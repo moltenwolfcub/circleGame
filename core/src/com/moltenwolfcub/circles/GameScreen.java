@@ -19,7 +19,10 @@ public class GameScreen implements Screen {
         this.game = game;
 
         setup();
+
+        stage.addActor(new Circle(this.game));
     }
+
     private void setup() {
 
 		this.camera = new OrthographicCamera();
