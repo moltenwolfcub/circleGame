@@ -1,4 +1,4 @@
-package com.moltenwolfcub.circles;
+package com.moltenwolfcub.circles.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -7,6 +7,8 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.moltenwolfcub.circles.Circle;
+import com.moltenwolfcub.circles.CircleGame;
 import com.moltenwolfcub.circles.util.Constants;
 
 public class GameScreen implements Screen {

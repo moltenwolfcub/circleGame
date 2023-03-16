@@ -3,6 +3,7 @@ package com.moltenwolfcub.circles;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.moltenwolfcub.circles.screens.GameScreen;
 
 public class CircleGame extends Game {
     public static TextureAtlas spriteTextureAtlas;
