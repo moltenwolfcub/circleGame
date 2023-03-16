@@ -1,20 +1,17 @@
 package com.moltenwolfcub.circles;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Pixmap;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.Disposable;
 import com.moltenwolfcub.circles.util.Constants;
+import com.moltenwolfcub.circles.util.texture.BooleanStatedTexture;
 
 public class Circle extends Actor implements Disposable {
     protected final CircleGame game;
     protected final Sprite sprite;
-    protected final Texture emptyTexture;
-    protected final Texture filledTexture;
+    protected final BooleanStatedTexture texture;
 
     protected boolean isFilled;
 
@@ -23,26 +20,19 @@ public class Circle extends Actor implements Disposable {
         this.game = game;
         this.isFilled = false;
 
+        this.texture = new BooleanStatedTexture(
+            CircleGame.spriteTextureAtlas.findRegion("filledCircle"),
+            CircleGame.spriteTextureAtlas.findRegion("emptyCircle")
+        );
 
-        Pixmap filled = new Pixmap(Constants.CIRCLE_DIAMETER, Constants.CIRCLE_DIAMETER, Pixmap.Format.RGBA8888);
-        filled.setColor(Color.WHITE);
-        filled.fillCircle(filled.getWidth()/2, filled.getHeight()/2, filled.getWidth()/2-1);
-        this.filledTexture = new Texture(filled);
-        filled.dispose();
-
-        Pixmap empty = new Pixmap(Constants.CIRCLE_DIAMETER, Constants.CIRCLE_DIAMETER, Pixmap.Format.RGBA8888);
-        empty.setColor(Color.WHITE);
-        empty.drawCircle(empty.getWidth()/2, empty.getHeight()/2, empty.getWidth()/2-1);
-        this.emptyTexture = new Texture(empty);
-        empty.dispose();
-
-        this.sprite = new Sprite(this.emptyTexture);
-        this.sprite.setCenter(Constants.VIEWPORT_WIDTH/2.0f, Constants.VIEWPORT_HEIGHT/2.0f);
+        this.sprite = new Sprite(this.texture.getTexture(this.isFilled));
     }
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
-        this.sprite.setTexture(isFilled ? filledTexture : emptyTexture);
+        this.sprite.setBounds(0, 0, Constants.CIRCLE_DIAMETER, Constants.CIRCLE_DIAMETER);
+        this.sprite.setCenter(Constants.VIEWPORT_WIDTH/2.0f, Constants.VIEWPORT_HEIGHT/2.0f);
+        this.sprite.setRegion(this.texture.getTexture(this.isFilled));
         this.sprite.draw(this.game.spriteBatch);
     }
 
@@ -57,7 +47,5 @@ public class Circle extends Actor implements Disposable {
 
     @Override
     public void dispose() {
-        this.filledTexture.dispose();
-        this.emptyTexture.dispose();
     }
 }
