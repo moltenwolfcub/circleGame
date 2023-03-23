@@ -8,12 +8,12 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.moltenwolfcub.circles.util.CircleManager;
 import com.moltenwolfcub.circles.util.Constants;
 import com.moltenwolfcub.circles.util.texture.BooleanStatedTexture;
 
 public class CircleTile extends Actor implements Disposable {
-    protected final CircleGame game;
-    protected final Viewport viewport;
+    protected final CircleManager manager;
     protected final Sprite sprite;
     protected final BooleanStatedTexture texture;
 
@@ -22,9 +22,8 @@ public class CircleTile extends Actor implements Disposable {
     protected Circle hitbox;
 
 
-    public CircleTile(CircleGame game, Viewport view, Integer id) {
-        this.game = game;
-        this.viewport = view;
+    public CircleTile(CircleManager circleManager, Integer id) {
+        this.manager = circleManager;
         this.isFilled = false;
         this.hitbox = new Circle(0, 0, Constants.CIRCLE_DIAMETER/2.0f);
         this.id = id;
@@ -47,7 +46,7 @@ public class CircleTile extends Actor implements Disposable {
     public void draw(Batch batch, float parentAlpha) {
         this.sprite.setRegion(this.texture.getTexture(this.isFilled));
 
-        this.sprite.draw(this.game.spriteBatch);
+        this.sprite.draw(this.manager.game.spriteBatch);
     }
 
     @Override
@@ -68,10 +67,24 @@ public class CircleTile extends Actor implements Disposable {
 
     public void handleInput() {
         if (Gdx.input.justTouched()) {
-            Vector3 mousePos = this.viewport.unproject(new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0));
+            Vector3 mousePos = this.manager.view.unproject(new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0));
             if (this.hitbox.contains(mousePos.x, mousePos.y)) {
-                this.isFilled = !this.isFilled;
+                this.handleClick();
             }
         }
+    }
+
+    private void handleClick() {
+        if (this.manager.isValidMove(this)) {
+            this.manager.makeMove(this);
+        }
+    }
+
+    public void fillCircle() {
+        this.isFilled = true;
+    }
+
+    public Integer getId() {
+        return id;
     }
 }

@@ -9,18 +9,42 @@ import java.util.List;
 import java.util.Map;
 
 public class CircleManager {
-    public Map<Integer, CircleTile> circles;
+    protected Map<Integer, CircleTile> circles;
+    protected MoveRuleSet moveRules;
+    protected Integer lastSelected;
+
+    public final CircleGame game;
+    public final Viewport view;
 
     public CircleManager(Integer circleCount, CircleGame game, Viewport view) {
+        this.game = game;
+        this.view = view;
+
         this.circles = new HashMap<>();
+        this.moveRules = new MoveRuleSet(2, 4);
+        this.lastSelected = 0;
 
         for (int i = 0; i < circleCount; i++) {
-            CircleTile c = new CircleTile(game, view, i);
+            CircleTile c = new CircleTile(this, i);
             this.circles.put(i, c);
         }
+        this.circles.get(0).fillCircle();
     }
 
     public List<CircleTile> getCircles() {
         return circles.values().stream().toList();
+    }
+
+    public List<CircleTile> getValidMoves() {
+        return moveRules.getValidMoves(lastSelected).stream().map(x -> this.circles.get(x)).toList();
+    }
+
+    public boolean isValidMove(CircleTile tile) {
+        return this.getValidMoves().contains(tile);
+    }
+
+    public void makeMove(CircleTile tile) {
+        tile.fillCircle();
+        this.lastSelected = tile.getId();
     }
 }
