@@ -7,9 +7,12 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.moltenwolfcub.circles.Circle;
+import com.moltenwolfcub.circles.CircleTile;
 import com.moltenwolfcub.circles.CircleGame;
 import com.moltenwolfcub.circles.util.Constants;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class GameScreen implements Screen {
     private final CircleGame game;
@@ -17,12 +20,18 @@ public class GameScreen implements Screen {
     public Viewport view;
     private Stage stage;
 
+    public Map<Integer, CircleTile> circles = new HashMap<>();
+
     public GameScreen(CircleGame game) {
         this.game = game;
 
         setup();
 
-        stage.addActor(new Circle(this.game));
+        for (int i = 0; i < 5; i++) {
+            CircleTile c = new CircleTile(this.game, this.view, i);
+            this.circles.put(i, c);
+            this.stage.addActor(c);
+        }
     }
 
     private void setup() {
