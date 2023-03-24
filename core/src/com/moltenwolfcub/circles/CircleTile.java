@@ -16,10 +16,10 @@ public class CircleTile extends Actor implements Disposable {
     protected final CircleManager manager;
     protected final Sprite sprite;
     protected final BooleanStatedTexture texture;
+    protected final Integer id;
+    protected final Circle hitbox;
 
     protected boolean isFilled;
-    protected Integer id;
-    protected Circle hitbox;
 
 
     public CircleTile(CircleManager circleManager, Integer id) {
@@ -46,7 +46,7 @@ public class CircleTile extends Actor implements Disposable {
     public void draw(Batch batch, float parentAlpha) {
         this.sprite.setRegion(this.texture.getTexture(this.isFilled));
 
-        this.sprite.draw(this.manager.game.spriteBatch);
+        this.sprite.draw(batch, parentAlpha);
     }
 
     @Override
@@ -86,5 +86,9 @@ public class CircleTile extends Actor implements Disposable {
 
     public Integer getId() {
         return id;
+    }
+
+    public void reset() {
+        this.isFilled = false;
     }
 }

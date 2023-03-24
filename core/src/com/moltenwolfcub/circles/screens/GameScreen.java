@@ -7,9 +7,11 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.moltenwolfcub.circles.util.Button;
 import com.moltenwolfcub.circles.CircleGame;
 import com.moltenwolfcub.circles.util.CircleManager;
 import com.moltenwolfcub.circles.util.Constants;
+import com.moltenwolfcub.circles.util.RestartButton;
 
 public class GameScreen implements Screen {
     private final CircleGame game;
@@ -26,6 +28,8 @@ public class GameScreen implements Screen {
 
         circleManager = new CircleManager(5, this.game, this.view);
         circleManager.getCircles().forEach(c -> this.stage.addActor(c));
+
+        this.stage.addActor(new RestartButton(circleManager));
     }
 
     private void setup() {

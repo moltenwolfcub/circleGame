@@ -21,18 +21,23 @@ public class CircleManager {
         this.view = view;
 
         this.circles = new HashMap<>();
-        this.moveRules = new MoveRuleSet(2, 4);
-        this.lastSelected = 0;
 
         for (int i = 0; i < circleCount; i++) {
             CircleTile c = new CircleTile(this, i);
             this.circles.put(i, c);
         }
-        this.circles.get(0).fillCircle();
+        this.reset();
     }
 
     public List<CircleTile> getCircles() {
         return circles.values().stream().toList();
+    }
+
+    public void reset() {
+        this.moveRules = new MoveRuleSet(2, 4);
+        this.lastSelected = 0;
+        this.circles.values().forEach(CircleTile::reset);
+        this.circles.get(0).fillCircle();
     }
 
     public List<CircleTile> getValidMoves() {
