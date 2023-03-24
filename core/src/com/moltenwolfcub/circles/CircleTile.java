@@ -75,7 +75,7 @@ public class CircleTile extends Actor implements Disposable {
     }
 
     private void handleClick() {
-        if (this.manager.isValidMove(this)) {
+        if (this.manager.isValidMove(this) && !this.isFilled) {
             this.manager.makeMove(this);
         }
     }
