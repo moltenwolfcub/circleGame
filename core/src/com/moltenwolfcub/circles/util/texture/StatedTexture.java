@@ -4,5 +4,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public interface StatedTexture<T> {
 
+    TextureRegion getTexture();
     TextureRegion getTexture(T state);
+
 }

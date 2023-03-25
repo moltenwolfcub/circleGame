@@ -10,7 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.moltenwolfcub.circles.CircleGame;
-import com.moltenwolfcub.circles.util.Constants;
+import com.moltenwolfcub.circles.util.texture.ConstantStatedTexture;
 
 public abstract class Button extends Actor implements Disposable {
     protected static final Integer diameter = 48;
@@ -18,7 +18,7 @@ public abstract class Button extends Actor implements Disposable {
 
     protected final Viewport view;
 
-    protected final TextureRegion texture;
+    protected final ConstantStatedTexture texture;
     protected final Sprite sprite;
     protected final Circle hitbox;
 
@@ -26,8 +26,8 @@ public abstract class Button extends Actor implements Disposable {
     public Button(Viewport view) {
         this.view = view;
 
-        this.texture = CircleGame.spriteTextureAtlas.findRegion("filledCircle");
-        this.sprite = new Sprite(this.texture);
+        this.texture = new ConstantStatedTexture(CircleGame.spriteTextureAtlas.findRegion("filledCircle"));
+        this.sprite = new Sprite(this.texture.getTexture());
         this.hitbox = new Circle(0, 0, diameter/2.0f);
     }
 

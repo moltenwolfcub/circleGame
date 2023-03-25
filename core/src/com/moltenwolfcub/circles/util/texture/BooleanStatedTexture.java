@@ -12,6 +12,11 @@ public class BooleanStatedTexture implements StatedTexture<Boolean>{
     }
 
     @Override
+    public TextureRegion getTexture() {
+        return this.getTexture(false);
+    }
+
+    @Override
     public TextureRegion getTexture(Boolean state) {
         return state ? whenTrue : whenFalse;
     }
