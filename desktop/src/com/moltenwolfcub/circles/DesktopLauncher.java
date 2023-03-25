@@ -10,7 +10,7 @@ import com.moltenwolfcub.circles.util.Constants;
 public class DesktopLauncher {
 	public static void main (String[] args) {
 		boolean forcePack = true;
-		if(Arrays.stream(args).anyMatch("pack"::equals) || forcePack) {
+		if(Arrays.asList(args).contains("pack") || forcePack) {
 			packTextures();
 		}
 

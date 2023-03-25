@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 public class CircleManager {
-    protected Map<Integer, CircleTile> circles;
+    protected final Map<Integer, CircleTile> circles;
     protected MoveRuleSet moveRules;
     protected Integer lastSelected;
 
@@ -41,7 +41,7 @@ public class CircleManager {
     }
 
     public List<CircleTile> getValidMoves() {
-        return moveRules.getValidMoves(lastSelected).stream().map(x -> this.circles.get(x)).toList();
+        return moveRules.getValidMoves(lastSelected).stream().map(this.circles::get).toList();
     }
 
     public boolean isValidMove(CircleTile tile) {

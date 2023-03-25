@@ -29,5 +29,5 @@ public class MoveRuleSet {
             }
         }
         return valid;
-    };
+    }
 }

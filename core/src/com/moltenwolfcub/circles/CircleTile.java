@@ -7,7 +7,6 @@ import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.Disposable;
-import com.badlogic.gdx.utils.viewport.Viewport;
 import com.moltenwolfcub.circles.util.CircleManager;
 import com.moltenwolfcub.circles.util.Constants;
 import com.moltenwolfcub.circles.util.texture.BooleanStatedTexture;
