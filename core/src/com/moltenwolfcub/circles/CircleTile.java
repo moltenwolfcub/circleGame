@@ -33,7 +33,7 @@ public class CircleTile extends Actor implements Disposable {
             CircleGame.spriteTextureAtlas.findRegion("emptyCircle")
         );
 
-        this.sprite = new Sprite(this.texture.getTexture(this.isFilled));
+        this.sprite = new Sprite(this.texture.getTexture());
         this.sprite.setBounds(0, 0, Constants.CIRCLE_DIAMETER, Constants.CIRCLE_DIAMETER);
 
         float paddingSize = Constants.VIEWPORT_WIDTH/(float)Constants.CIRCLES_PADDING;
