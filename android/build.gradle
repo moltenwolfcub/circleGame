@@ -20,7 +20,7 @@ android {
     }
     defaultConfig {
         applicationId "com.moltenwolfcub.circles"
-        minSdkVersion 25
+        minSdkVersion 28
         targetSdkVersion 33
         versionCode 1
         versionName "1.0"

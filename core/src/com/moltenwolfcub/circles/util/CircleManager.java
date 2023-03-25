@@ -1,12 +1,16 @@
 package com.moltenwolfcub.circles.util;
 
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.moltenwolfcub.circles.CircleGame;
 import com.moltenwolfcub.circles.CircleTile;
+import com.moltenwolfcub.circles.util.texture.StatedTexture;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class CircleManager {
     protected final Map<Integer, CircleTile> circles;
@@ -30,7 +34,7 @@ public class CircleManager {
     }
 
     public List<CircleTile> getCircles() {
-        return circles.values().stream().toList();
+        return new ArrayList<>(circles.values());
     }
 
     public void reset() {
@@ -41,7 +45,7 @@ public class CircleManager {
     }
 
     public List<CircleTile> getValidMoves() {
-        return moveRules.getValidMoves(lastSelected).stream().map(this.circles::get).toList();
+        return moveRules.getValidMoves(lastSelected).stream().map(this.circles::get).collect(Collectors.toList());
     }
 
     public boolean isValidMove(CircleTile tile) {
