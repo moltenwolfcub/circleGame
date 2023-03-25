@@ -50,7 +50,7 @@ public abstract class CircularClickable extends Actor {
         }
     }
 
-    public abstract void handleClick();
+    protected abstract void handleClick();
 
     public void positionSprite(float x, float y) {
         this.sprite.setCenter(x, y);
