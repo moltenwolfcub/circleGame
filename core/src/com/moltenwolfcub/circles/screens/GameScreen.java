@@ -11,6 +11,7 @@ import com.moltenwolfcub.circles.CircleGame;
 import com.moltenwolfcub.circles.level.Level;
 import com.moltenwolfcub.circles.level.LevelManager;
 import com.moltenwolfcub.circles.util.Constants;
+import com.moltenwolfcub.circles.util.RestartButton;
 
 public class GameScreen implements Screen {
     private final CircleGame game;
@@ -26,7 +27,7 @@ public class GameScreen implements Screen {
         lvlManage.addLevel(new Level(this.view));
         lvlManage.load();
 
-//        this.stage.addActor(new RestartButton(null));
+        this.stage.addActor(new RestartButton(lvlManage, this.view));
     }
 
     private void setup() {

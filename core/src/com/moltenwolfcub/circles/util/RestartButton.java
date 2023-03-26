@@ -1,14 +1,16 @@
 package com.moltenwolfcub.circles.util;
 
+import com.badlogic.gdx.utils.viewport.Viewport;
 import com.moltenwolfcub.circles.level.CircleManager;
+import com.moltenwolfcub.circles.level.LevelManager;
 
 public class RestartButton extends Button {
     protected static final Integer padding = 10;
 
-    protected final CircleManager manager;
+    protected final LevelManager manager;
 
-    public RestartButton(CircleManager manager) {
-        super(manager.view);
+    public RestartButton(LevelManager manager, Viewport view) {
+        super(view);
         this.manager = manager;
     }
 
@@ -24,6 +26,6 @@ public class RestartButton extends Button {
 
     @Override
     public void handleClick() {
-        this.manager.reset();
+        this.manager.load();
     }
 }

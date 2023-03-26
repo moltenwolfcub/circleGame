@@ -5,6 +5,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.moltenwolfcub.circles.CircleTile;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class LevelManager {
@@ -35,13 +36,7 @@ public class LevelManager {
     }
 
     public void load(Integer lvlId) {
-        boolean levelLoaded = false;
-        for (Actor actor : this.stage.getActors().items) {
-            if (actor instanceof CircleTile) {
-                levelLoaded = true;
-                break;
-            }
-        }
+        boolean levelLoaded = Arrays.stream(this.stage.getActors().items).anyMatch(c -> c instanceof CircleTile);
 
         if (lvlId.equals(currentLvl) && levelLoaded) {
             this.getCurrent().reset();
