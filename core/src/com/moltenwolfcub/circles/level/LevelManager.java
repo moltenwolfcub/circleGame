@@ -18,6 +18,12 @@ public class LevelManager {
         this.stage = stage;
         this.levels = new ArrayList<>();
     }
+//
+    public void update() {
+        if (this.getCurrent().isComplete()) {
+            this.loadNext();
+        }
+    }
 
     public void addLevel(Level lvl) {
         this.levels.add(lvl);
@@ -32,10 +38,14 @@ public class LevelManager {
     }
 
     public void loadNext() {
-        this.load(++this.currentLvl);
+        this.load(this.currentLvl+1);
     }
 
     public void load(Integer lvlId) {
+        if (lvlId >= levels.size()) {
+            lvlId = 0;
+        }
+
         boolean levelLoaded = Arrays.stream(this.stage.getActors().items).anyMatch(c -> c instanceof CircleTile);
 
         if (lvlId.equals(currentLvl) && levelLoaded) {

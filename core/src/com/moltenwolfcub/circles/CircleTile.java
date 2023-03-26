@@ -41,7 +41,7 @@ public class CircleTile extends CircularClickable {
 
         float paddingSize = Constants.VIEWPORT_WIDTH/(float)Constants.CIRCLES_PADDING;
         float usableWidth = Constants.VIEWPORT_WIDTH-paddingSize*2;
-        float x = usableWidth/5.0f*(this.id+0.5f) + paddingSize;
+        float x = usableWidth/this.manager.size()*(this.id+0.5f) + paddingSize;
         this.positionSprite(x, Constants.VIEWPORT_HEIGHT/2.0f);
     }
 
@@ -61,5 +61,9 @@ public class CircleTile extends CircularClickable {
 
     public void reset() {
         this.isFilled = false;
+    }
+
+    public boolean isEmpty() {
+        return !isFilled;
     }
 }

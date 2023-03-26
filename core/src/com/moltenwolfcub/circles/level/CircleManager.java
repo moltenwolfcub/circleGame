@@ -30,7 +30,11 @@ public class CircleManager {
     }
 
     public List<CircleTile> getCircles() {
-        return new ArrayList<>(circles.values());
+        return new ArrayList<>(this.circles.values());
+    }
+
+    public int size() {
+        return getCircles().size();
     }
 
     public void reset() {
@@ -41,7 +45,7 @@ public class CircleManager {
     }
 
     public List<CircleTile> getValidMoves() {
-        return moveRules.getValidMoves(lastSelected).stream().map(this.circles::get).collect(Collectors.toList());
+        return this.moveRules.getValidMoves(lastSelected).stream().map(this.circles::get).collect(Collectors.toList());
     }
 
     public boolean isValidMove(CircleTile tile) {

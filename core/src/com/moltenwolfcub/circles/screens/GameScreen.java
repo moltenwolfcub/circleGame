@@ -15,21 +15,19 @@ import com.moltenwolfcub.circles.util.RestartButton;
 
 public class GameScreen implements Screen {
     private final CircleGame game;
+    private LevelManager levelManager;
     public Viewport view;
     private Stage stage;
 
     public GameScreen(CircleGame game) {
         this.game = game;
 
-        setup();
+        this.setup();
+        this.initializeLevel();
 
-        LevelManager lvlManage = new LevelManager(this.stage);
-        lvlManage.addLevel(new Level(this.view));
-        lvlManage.load();
 
-        this.stage.addActor(new RestartButton(lvlManage, this.view));
+        this.stage.addActor(new RestartButton(levelManager, this.view));
     }
-
     private void setup() {
 
         OrthographicCamera camera = new OrthographicCamera();
@@ -37,6 +35,12 @@ public class GameScreen implements Screen {
 		this.view = new FitViewport(Constants.VIEWPORT_WIDTH, Constants.VIEWPORT_HEIGHT, camera);
         this.stage = new Stage(view, this.game.spriteBatch);
         Gdx.input.setInputProcessor(stage);
+    }
+    private void initializeLevel() {
+        this.levelManager = new LevelManager(this.stage);
+        this.levelManager.addLevel(new Level(this.view, 5));
+        this.levelManager.addLevel(new Level(this.view, 8));
+        this.levelManager.load();
     }
 
     @Override
@@ -49,6 +53,7 @@ public class GameScreen implements Screen {
         this.stage.draw();
     }
     private void tick(float delta) {
+        this.levelManager.update();
         this.stage.act(delta);
     }
 
