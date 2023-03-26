@@ -1,10 +1,8 @@
-package com.moltenwolfcub.circles.util;
+package com.moltenwolfcub.circles.level;
 
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.moltenwolfcub.circles.CircleGame;
 import com.moltenwolfcub.circles.CircleTile;
-import com.moltenwolfcub.circles.util.texture.StatedTexture;
+import com.moltenwolfcub.circles.util.MoveRuleSet;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,11 +15,9 @@ public class CircleManager {
     protected MoveRuleSet moveRules;
     protected Integer lastSelected;
 
-    public final CircleGame game;
     public final Viewport view;
 
-    public CircleManager(Integer circleCount, CircleGame game, Viewport view) {
-        this.game = game;
+    public CircleManager(Integer circleCount, Viewport view) {
         this.view = view;
 
         this.circles = new HashMap<>();

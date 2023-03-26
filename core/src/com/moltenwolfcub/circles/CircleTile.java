@@ -1,7 +1,7 @@
 package com.moltenwolfcub.circles;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.moltenwolfcub.circles.util.CircleManager;
+import com.moltenwolfcub.circles.level.CircleManager;
 import com.moltenwolfcub.circles.util.CircularClickable;
 import com.moltenwolfcub.circles.util.Constants;
 import com.moltenwolfcub.circles.util.texture.BooleanStatedTexture;

@@ -1,5 +1,7 @@
 package com.moltenwolfcub.circles.util;
 
+import com.moltenwolfcub.circles.level.CircleManager;
+
 public class RestartButton extends Button {
     protected static final Integer padding = 10;
 
