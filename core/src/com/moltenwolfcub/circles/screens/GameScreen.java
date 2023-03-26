@@ -9,11 +9,11 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.moltenwolfcub.circles.CircleGame;
 import com.moltenwolfcub.circles.level.Level;
+import com.moltenwolfcub.circles.level.LevelManager;
 import com.moltenwolfcub.circles.util.Constants;
 
 public class GameScreen implements Screen {
     private final CircleGame game;
-    private OrthographicCamera camera;
     public Viewport view;
     private Stage stage;
 
@@ -22,17 +22,18 @@ public class GameScreen implements Screen {
 
         setup();
 
-        Level lvl = new Level(this.view);
-        lvl.load(this.stage);
+        LevelManager lvlManage = new LevelManager(this.stage);
+        lvlManage.addLevel(new Level(this.view));
+        lvlManage.load();
 
 //        this.stage.addActor(new RestartButton(null));
     }
 
     private void setup() {
 
-		this.camera = new OrthographicCamera();
-		this.camera.setToOrtho(false);
-		this.view = new FitViewport(Constants.VIEWPORT_WIDTH, Constants.VIEWPORT_HEIGHT, this.camera);
+        OrthographicCamera camera = new OrthographicCamera();
+		camera.setToOrtho(false);
+		this.view = new FitViewport(Constants.VIEWPORT_WIDTH, Constants.VIEWPORT_HEIGHT, camera);
         this.stage = new Stage(view, this.game.spriteBatch);
         Gdx.input.setInputProcessor(stage);
     }
