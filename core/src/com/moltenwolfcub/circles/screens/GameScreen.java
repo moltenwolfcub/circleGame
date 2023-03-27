@@ -10,6 +10,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.moltenwolfcub.circles.CircleGame;
 import com.moltenwolfcub.circles.level.Level;
 import com.moltenwolfcub.circles.level.LevelManager;
+import com.moltenwolfcub.circles.data.LevelSerialization;
 import com.moltenwolfcub.circles.util.Constants;
 import com.moltenwolfcub.circles.util.RestartButton;
 
@@ -41,6 +42,12 @@ public class GameScreen implements Screen {
         this.levelManager.addLevel(new Level(this.view, 5));
         this.levelManager.addLevel(new Level(this.view, 8));
         this.levelManager.load();
+
+        try {
+            LevelSerialization.write(this.levelManager.getCurrent());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

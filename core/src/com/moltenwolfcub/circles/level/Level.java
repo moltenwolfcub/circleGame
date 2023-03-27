@@ -31,4 +31,8 @@ public class Level {
     public boolean isStuck() {
         return this.manager.getValidMoves().isEmpty();
     }
+
+    public CircleManager getManager() {
+        return manager;
+    }
 }

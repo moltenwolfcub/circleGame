@@ -56,4 +56,8 @@ public class CircleManager {
         tile.fillCircle();
         this.lastSelected = tile.getId();
     }
+
+    public MoveRuleSet getRules() {
+        return moveRules;
+    }
 }

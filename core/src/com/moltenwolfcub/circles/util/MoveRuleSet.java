@@ -4,12 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MoveRuleSet {
-    public Integer maxJumpSize;
-    public Integer minJumpSize;
+    public final Integer defaultJumpMax;
+    public final Integer defaultJumpMin;
+    protected Integer maxJumpSize;
+    protected Integer minJumpSize;
 
     public MoveRuleSet(Integer min, Integer max) {
-        this.maxJumpSize = max;
-        this.minJumpSize = min;
+        this.defaultJumpMax = max;
+        this.defaultJumpMin = min;
+        this.maxJumpSize = this.defaultJumpMax;
+        this.minJumpSize = this.defaultJumpMin;
     }
 
     public List<Integer> getValidMoves(Integer origin) {
