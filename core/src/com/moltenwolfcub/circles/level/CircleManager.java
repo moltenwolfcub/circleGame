@@ -17,8 +17,9 @@ public class CircleManager {
 
     public final Viewport view;
 
-    public CircleManager(Integer circleCount, Viewport view) {
+    public CircleManager(Integer circleCount, Viewport view, MoveRuleSet rules) {
         this.view = view;
+        this.moveRules = rules;
 
         this.circles = new HashMap<>();
 
@@ -38,7 +39,6 @@ public class CircleManager {
     }
 
     public void reset() {
-        this.moveRules = new MoveRuleSet(2, 4);
         this.lastSelected = 0;
         this.circles.values().forEach(CircleTile::reset);
         this.circles.get(0).fillCircle();

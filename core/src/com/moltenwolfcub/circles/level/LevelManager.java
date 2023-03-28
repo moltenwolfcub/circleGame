@@ -33,6 +33,10 @@ public class LevelManager {
         return this.levels.get(this.currentLvl);
     }
 
+    public List<Level> getLevels() {
+        return List.copyOf(levels);
+    }
+
     public void load() {
         this.load(this.currentLvl);
     }

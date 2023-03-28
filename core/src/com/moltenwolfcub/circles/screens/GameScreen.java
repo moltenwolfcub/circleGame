@@ -39,14 +39,12 @@ public class GameScreen implements Screen {
     }
     private void initializeLevel() {
         this.levelManager = new LevelManager(this.stage);
-        this.levelManager.addLevel(new Level(this.view, 5));
-        this.levelManager.addLevel(new Level(this.view, 8));
+        LevelSerialization.readAll(this.view).forEach(this.levelManager::addLevel);
         this.levelManager.load();
 
-        try {
-            LevelSerialization.write(this.levelManager.getCurrent());
-        } catch (Exception e) {
-            e.printStackTrace();
+        LevelSerialization.clearData();
+        for (int id = 0; id < this.levelManager.getLevels().size(); id++) {
+            LevelSerialization.write(this.levelManager.getLevels().get(id), id);
         }
     }
 

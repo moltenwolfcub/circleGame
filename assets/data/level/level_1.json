@@ -1,0 +1,7 @@
+{
+  "move_rules": {
+    "min_jump": 2,
+    "max_jump": 4
+  },
+  "size": 9
+}
