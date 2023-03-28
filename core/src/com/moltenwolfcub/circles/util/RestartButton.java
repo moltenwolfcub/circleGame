@@ -1,7 +1,6 @@
 package com.moltenwolfcub.circles.util;
 
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.moltenwolfcub.circles.level.CircleManager;
 import com.moltenwolfcub.circles.level.LevelManager;
 
 public class RestartButton extends Button {

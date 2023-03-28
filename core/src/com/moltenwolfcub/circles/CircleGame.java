@@ -4,7 +4,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.utils.GdxRuntimeException;
-import com.moltenwolfcub.circles.screens.GameScreen;
+import com.moltenwolfcub.circles.screen.GameScreen;
 
 public class CircleGame extends Game {
     public static TextureAtlas spriteTextureAtlas;

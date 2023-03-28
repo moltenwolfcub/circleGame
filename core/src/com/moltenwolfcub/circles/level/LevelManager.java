@@ -1,8 +1,7 @@
 package com.moltenwolfcub.circles.level;
 
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.moltenwolfcub.circles.CircleTile;
+import com.moltenwolfcub.circles.tile.CircleTile;
 
 import java.util.ArrayList;
 import java.util.Arrays;

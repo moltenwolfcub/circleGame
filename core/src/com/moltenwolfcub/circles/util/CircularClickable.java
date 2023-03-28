@@ -7,18 +7,18 @@ import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.moltenwolfcub.circles.util.texture.StatedTexture;
+import com.moltenwolfcub.circles.util.texture.StatedTextureImpl;
 
-public abstract class CircularClickable extends Actor {
+public abstract class CircularClickable<T> extends Actor {
     protected final Viewport view;
 
     protected final Sprite sprite;
-    protected final StatedTexture<?> texture;
+    protected final StatedTextureImpl<T> texture;
 
     protected final Circle hitbox;
     protected final Integer diameter;
 
-    public CircularClickable(Integer diameter, StatedTexture<?> texture, Viewport viewport) {
+    public CircularClickable(Integer diameter, StatedTextureImpl<T> texture, Viewport viewport) {
         this.view = viewport;
 
         this.texture = texture;
@@ -31,6 +31,8 @@ public abstract class CircularClickable extends Actor {
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
+        this.sprite.setRegion(this.texture.getTexture());
+
         this.sprite.draw(batch, parentAlpha);
     }
 
